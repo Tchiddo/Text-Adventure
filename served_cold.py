@@ -170,13 +170,22 @@ if choice == "1":
 
     input_clear("\nENTER to continue...")
     typewriter("\n{color: red}{superslow}Guard 1:{endcolor}{endspeed}{superslow} Good little dog.{endspeed}{slow} Act up again, and we won't give you a second chance..{endspeed}")
+    
+    input_clear("\nENTER to continue...")
+
+    typewriter("\n{color: magenta}{slow}The guards exit the cell as the spoken threat looms in the air like a still fog.{endcolor}{endspeed}")
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Choice 2:
 if choice == "2":
     typewriter("\n{color: cyan}You leap at the guards with a weak attempt, placing all your bets on a minisucle chance...{endcolor}")
+
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
