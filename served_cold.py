@@ -115,14 +115,15 @@ def typewriter(text, default_delay=0.05):
 
 # --- Act 1 - Breakout ---
 typewriter("\nThis is a decision-based simulation. Your actions {color: red}WILL{endcolor} have consequences.")
-print(colored("-------------------------------------------------------------", "yellow"))
+print("\n-----------------------------------------------------------------------")
 
+typewriter("\n{color: yellow}Zahra is an urban girl straight off the streets of {color: blue}plax city,{endcolor}{color: yellow} meaning she is no stranger to {endcolor}{color: red}violent elements{endcolor}{color: yellow} of all flavours. Having being wrongly convicted of her sisters{endcolor}{color: red} murder,{endcolor}{color: yellow} her job is to find out who did it, and take her {endcolor}{color: red}revenge.")
 # Start input (cleared after)
-begin = input_clear("Type " + colored("START ", "green") + "to begin your Journey of Revenge: ")
+begin = input_clear("\nType " + colored("START ", "green") + "to begin your Journey: ")
 begin = begin.upper().strip()
 
 if begin != "START":
-    print("Conditions not met, TERMINATING SIMULATION")
+    typewriter("{color: grey}Conditions not met, TERMINATING SIMULATION")
     print("-------------------------------------------------------------------")
     sys.exit()
 
@@ -254,5 +255,3 @@ if choice == "2":
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
