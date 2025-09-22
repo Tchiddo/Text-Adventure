@@ -2,6 +2,7 @@ from termcolor import colored
 import sys
 import time
 import os
+import random
 
 # Enable ANSI on some Windows terminals
 if os.name == 'nt':
@@ -159,33 +160,99 @@ input_clear("\nENTER to continue...")
 
 # Choice time
 typewriter("\n{color: yellow}{slow}What will Zahra do?{endcolor}{endspeed}")
-typewriter("\n{color: green} 1.{endcolor}{color: blue} Obey and get in her bed{endcolor}")
+typewriter("\n{color: green} 1.{endcolor}{color: blue} Follow orders and get in her bed{endcolor}")
 typewriter("\n{color: green} 2.{endcolor}{color: blue} Take her chances, try to take them both on{endcolor}")
 
 choice = input_clear("\nChoose 1, or 2: ").strip()
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Choice 1:
+
+# Choice 1:
 if choice == "1":
+    number1 = random.randint(1, 2)   # <--- moved inside Choice 1
+
+    print("Your random number is:", number1)
+
     typewriter("\n{color: magenta}Zahra swallows her already broken pride, and climbs into bed...{endcolor}")
 
     input_clear("\nENTER to continue...")
-    typewriter("\n{color: red}{superslow}Guard 1:{endcolor}{endspeed}{superslow} Good little dog.{endspeed}{slow} Act up again, and we won't give you a second chance..{endspeed}")
+    typewriter("\n{color: red}{superslow}Guard 1:{endcolor}{endspeed}{superslow} Good mutt.{endspeed}{slow} Act up again, and we won't give you a second chance..{endspeed}")
     
     input_clear("\nENTER to continue...")
 
     typewriter("\n{color: magenta}{slow}The guards exit the cell as the spoken threat looms in the air like a still fog.{endcolor}{endspeed}")
 
+    # Now handle the random outcome
+    if number1 == 1:
+        typewriter("\n{color: magenta}{slow}Zahra lies, exhausted, but never one to ever submit to the ties of power.{endcolor}")
+    elif number1 == 2:
+        typewriter("\n{color: cyan}{slow}I can't keep doing this...{endcolor}")
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Choice 2:
+
+# --- Turn-based Combat System ---
 if choice == "2":
-    typewriter("\n{color: cyan}You leap at the guards with a weak attempt, placing all your bets on a minisucle chance...{endcolor}")
+    typewriter("\n{color: cyan}You leap at the guards with a weak attempt, placing all your bets on a miniscule chance...{endcolor}")
+
+    # Define combat stats
+    player_health = 30
+    guard_health = 20
+
+    # Simple loop until someone’s health drops to 0
+    while player_health > 0 and guard_health > 0:
+        print(colored("\n--- Combat Round ---", "yellow"))
+        print(f"Your Health: {player_health} | Guard Health: {guard_health}")
+
+        # Player’s turn
+        typewriter("\n{color: green}Your move!{endcolor}")
+        typewriter("1. Attack\n2. Defend\n3. Risky Strike")
+
+        action = input_clear("Choose: ").strip()
+
+        if action == "1":  # Normal attack
+            dmg = random.randint(4, 8)
+            guard_health -= dmg
+            typewriter(f"\nYou strike the guard for {dmg} damage!")
+        elif action == "2":  # Defend
+            typewriter("\nYou brace yourself for the next hit. Incoming damage will be reduced.")
+            defend = True
+        elif action == "3":  # Risky
+            if random.randint(1, 2) == 1:
+                dmg = random.randint(8, 15)
+                guard_health -= dmg
+                typewriter(f"\nYour risky strike lands! {dmg} damage dealt!")
+            else:
+                typewriter("\nYou missed your risky strike!")
+        else:
+            typewriter("\nYou hesitate... and lose your chance to act!")
+
+        # Check if guard is defeated
+        if guard_health <= 0:
+            break
+
+        # Guard’s turn
+        typewriter("\n{color: red}The guard attacks!{endcolor}")
+        guard_dmg = random.randint(3, 7)
+
+        # Check defend
+        if 'defend' in locals() and defend:
+            guard_dmg //= 2
+            defend = False
+
+        player_health -= guard_dmg
+        typewriter(f"\nThe guard hits you for {guard_dmg} damage!")
+
+    # Combat ends
+    if player_health > 0:
+        typewriter("\n{color: green}You defeated the guard!{endcolor}")
+    else:
+        typewriter("\n{color: red}You Died.....{endcolor}")
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 
